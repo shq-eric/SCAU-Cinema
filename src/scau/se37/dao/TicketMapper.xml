@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.TicketDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllTicket" resultType="Ticket">
+		select * from ticket
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveTicket" parameterType="Ticket">
+		insert into ticket(MovieId,CustomId,MovieName,ScheduleId,CinemaAddress,HallId,
+		TicketSeat,ScheduleBegin,BeginTime,SchedulePrice) values (#{movieId},#{customId},#{movieName},#{scheduleId},
+		#{cinemaAddress},#{hallId},#{ticketSeat},#{scheduleBegin},#{beginTime},#{schedulePrice})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteTicket" parameterType="int">
+		delete from ticket where TicketId=#{ticketId}
+	</delete>
+
+	
+	<update id="updateTicket" parameterType="Ticket">
+		update ticket set MovieId=#{movieId},CustomId=#{customId},MovieName=#{movieName},ScheduleId=#{scheduleId},CinemaAddress=#{cinemaAddress},
+		HallId=#{hallId},TicketSeat=#{ticketSeat},
+		ScheduleBegin=#{scheduleBegin} where TicketId=#{ticketId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByTicketId" parameterType="int" resultType="Ticket">
+         select * from ticket where TicketId=#{ticketId}
+    </select>
+    
+   <!-- 查找最后n行数据 -->
+     <select id="findLastTicket" parameterType="int" resultType="Ticket">
+       select * from ticket order by TicketId DESC limit #{n}
+   </select>
+   
+   <!-- 按订票日期和客户ID查询 -->
+    <select id="findByTicketDate"  resultType="Ticket">
+       select * from ticket where CustomId=#{0} AND ScheduleBegin=#{1}
+   </select>
+   
+   <!-- 按schedule的成员查询 -->
+    <select id="findBySchedule" parameterType="Schedule" resultType="Ticket">
+       select * from ticket where HallId=#{hallId} AND ScheduleBegin=#{scheduleBegin} AND BeginTime=#{beginTime}
+   </select>
+   
+   <!-- 按CustomId查询 -->
+   <select id="findByCustomId" parameterType="int" resultType="Ticket">
+       select * from ticket where CustomId=#{customId}
+   </select>
+    
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.CustomerDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllCustomer" resultType="Customer">
+		select * from customer
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveCustomer" parameterType="Customer">
+		insert into customer(CustomUsername,CustomPassword,CustomTel) values (#{customUsername},#{customPassword},#{customTel})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where CustomId=#{customerId}
+	</delete>
+
+	
+	<update id="updateCustomer" parameterType="Customer">
+		update customer set CustomUsername=#{customUsername},CustomPassword=#{customPassword},
+		CustomTel=#{customTel} where CustomId=#{customId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByCustomerId" parameterType="int" resultType="Customer">
+         select * from customer where CustomId=#{customerId}
+    </select>
+    
+    <!-- 根据用户名SQL -->
+    <select id="findByCustomer" parameterType="Customer" resultType="Customer">
+        select * from customer where CustomUsername=#{customUsername} AND CustomPassword=#{customPassword}
+    </select>
+    
+</mapper>

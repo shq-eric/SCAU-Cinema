@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.SeatDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllSeat" resultType="Seat">
+		select * from seat
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveSeat" parameterType="Seat">
+		insert into seat(SeatPosition,SeatIsActive,HallId) values (#{seatPosition},
+		#{seatIsActive},#{hallId})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteSeat" parameterType="int">
+		delete from seat where SeatId=#{seatId}
+	</delete>
+
+	
+	<update id="updateSeat" parameterType="Seat">
+		update seat set SeatPosition=#{seatPosition},SeatIsActive=#{seatIsActive},
+		HallId=#{hallId} where SeatId=#{seatId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findBySeatId" parameterType="int" resultType="Seat">
+         select * from seat where SeatId=#{seatId}
+    </select>
+    
+   <!-- 根据HallId,seatPosition查询 -->
+	<select id="findSelectedSeat"  resultType="Seat">
+         select * from seat where HallId=#{0} AND SeatPosition=#{1}
+    </select> 
+    
+    <!-- 根据HallId,SeatIsActive查询 -->
+	<select id="findByStatus"  resultType="Seat">
+         select * from seat where HallId=#{0} AND SeatIsActive=#{1}
+    </select>
+    
+</mapper>

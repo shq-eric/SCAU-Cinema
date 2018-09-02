@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   
+ 	<typeAliases>
+      <typeAlias alias="User" type="scau.se37.entity.Customer"/> 
+      <typeAlias alias="Movie" type="scau.se37.entity.Movie"/> 
+      <typeAlias alias="Hall" type="scau.se37.entity.Hall"/>
+      <typeAlias alias="Administrator" type="scau.se37.entity.Administrator"/>
+       <typeAlias alias="Cinema" type="scau.se37.entity.Cinema"/>
+        <typeAlias alias="Schedule" type="scau.se37.entity.Schedule"/>
+         <typeAlias alias="Seat" type="scau.se37.entity.Seat"/>
+          <typeAlias alias="Ticket" type="scau.se37.entity.Ticket"/>
+          <typeAlias alias="MovieOrder" type="scau.se37.entity.MovieOrder"/>
+           <typeAlias alias="RefundOrder" type="scau.se37.entity.RefundOrder"/> 
+           <typeAlias alias="Statistics" type="scau.se37.entity.Statistics"/> 
+   </typeAliases>  
+   <!-- 配置Mapper文件的路径 -->
+   <mappers>
+       <mapper resource="scau/se37/dao/CustomerMapper.xml"/>
+       <mapper resource="scau/se37/dao/MovieMapper.xml"/>
+       <mapper resource="scau/se37/dao/HallMapper.xml"/>  
+       <mapper resource="scau/se37/dao/AdministratorMapper.xml"/>
+       <mapper resource="scau/se37/dao/CinemaMapper.xml"/>
+       <mapper resource="scau/se37/dao/ScheduleMapper.xml"/>
+       <mapper resource="scau/se37/dao/SeatMapper.xml"/>
+       <mapper resource="scau/se37/dao/TicketMapper.xml"/>
+       <mapper resource="scau/se37/dao/MovieOrderMapper.xml"/>
+       <mapper resource="scau/se37/dao/RefundOrderMapper.xml"/>
+       <mapper resource="scau/se37/dao/StatisticsMapper.xml"/>
+   </mappers>
+   
+   
+</configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.RefundOrderDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllRefundOrder" resultType="RefundOrder">
+		select * from refundOrder
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveRefundOrder" parameterType="RefundOrder">
+		insert into refundOrder(RefundOrderReason,TicketNum,RefundOrderPrice,
+		RefundOrderStatus,RefundOrderCustomerId,RefundOrderCustomerName,RefundOrderCustomerTel) values (#{refundOrderId},
+		#{refundOrderReason},#{ticketNum},#{refundOrderPrice},#{refundOrderStatus},#{refundOrderCustomerId},#{refundOrderCustomerName},
+		#{refundOrderCustomerTel})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteRefundOrder" parameterType="int">
+		delete from refundOrder where RefundOrderId=#{refundOrderId}
+	</delete>
+
+	
+	<update id="updateRefundOrder" parameterType="RefundOrder">
+		update refundOrder set RefundOrderReason=#{refundOrderReason},TicketNum=#{ticketNum},
+		RefundOrderPrice=#{refundOrderPrice},RefundOrderStatus=#{refundOrderStatus},
+		RefundOrderCustomerId=#{refundOrderCustomerId},RefundOrderCustomerName=#{refundOrderCustomerName},
+		RefundOrderCustomerTel=#{refundOrderCustomerTel} where RefundOrderId=#{refundOrderId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByRefundOrderId" parameterType="int" resultType="RefundOrder">
+         select * from refundOrder where RefundOrderId=#{refundOrderId}
+    </select>
+    
+   
+    
+</mapper>

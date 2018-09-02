@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.HallDao">	
+
+	<!-- 增加SQL -->
+	<insert id="saveHall" parameterType="Hall">
+		insert into hall(HallName,HallSeats,HallType,HallDescription,CinemaId) 
+		values (#{hallName},#{hallSeats},#{hallType},#{hallDescription},#{cinemaId})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteHall" parameterType="int">
+		delete from hall where HallId=#{hallId}
+	</delete>
+	
+	<!-- 根据ID  SQL -->
+	<select id="findByHallId" parameterType="int" resultType="Hall">
+         select * from hall where HallId=#{hallId}
+    </select>
+	
+	<!-- 查询所有SQL -->
+	<select id="findAllHall" resultType="Hall">
+		select * from hall
+	</select>
+
+	<!-- 更新SQL -->
+	<update id="updateHall" parameterType="Hall">
+		update hall set HallName=#{hallName},HallSeats=#{hallSeats},HallType=#{hallType},
+		HallDescription=#{hallDescription},CinemaId=#{cinemaId} where HallId=#{hallId}
+	</update> 
+    
+</mapper>

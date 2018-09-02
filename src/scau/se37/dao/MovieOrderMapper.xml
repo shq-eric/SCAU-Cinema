@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.MovieOrderDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllMovieOrder" resultType="MovieOrder">
+		select * from movieOrder
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveMovieOrder" parameterType="MovieOrder">
+		insert into movieOrder(OrderPlatform,TicketNum,OrderPrice,
+		OrderDate,Orderstatus,OrderCustomerId,OrderCustomerName,OrderCustomerTel) values (#{orderPlatform},
+		#{ticketNum},#{orderPrice},#{orderDate},#{orderstatus},#{orderCustomerId},#{orderCustomerName},#{orderCustomerTel})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteMovieOrder" parameterType="int">
+		delete from movieOrder where OrderId=#{movieOrderId}
+	</delete>
+
+	
+	<update id="updateMovieOrder" parameterType="MovieOrder">
+		update movieOrder set OrderPlatform=#{orderPlatform},TicketNum=#{ticketNum},
+		OrderPrice=#{orderPrice},OrderDate=#{orderDate},
+		Orderstatus=#{orderstatus},OrderCustomerId=#{orderCustomerId},OrderCustomerName=#{orderCustomerName},OrderCustomerTel=#{orderCustomerTel} where OrderId=#{orderId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByMovieOrderId" parameterType="int" resultType="MovieOrder">
+         select * from movieOrder where OrderId=#{movieOrderId}
+    </select>
+    
+   
+    
+</mapper>

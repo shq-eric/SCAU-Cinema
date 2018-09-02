@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.CinemaDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllCinema" resultType="Cinema">
+		select * from cinema
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveCinema" parameterType="Cinema">
+		insert into cinema(CinemaName,CinemaTel,CinemaAddress) values (#{cinemaName},
+		#{cinemaTel},#{cinemaAddress})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteCinema" parameterType="int">
+		delete from cinema where CinemaId=#{cinemaId}
+	</delete>
+
+	
+	<update id="updateCinema" parameterType="Cinema">
+		update cinema set CinemaName=#{cinemaName},CinemaTel=#{cinemaTel},
+		CinemaAddress=#{cinemaAddress} where CinemaId=#{cinemaId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByCinemaId" parameterType="int" resultType="Cinema">
+         select * from cinema where CinemaId=#{cinemaId}
+    </select>
+    
+   
+    
+</mapper>

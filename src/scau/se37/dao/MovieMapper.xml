@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.MovieDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllMovie" resultType="Movie">
+		select * from movie
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveMovie" parameterType="Movie">
+		insert into movie(MovieName,MovieMainActor,MovieDirector,
+		MovieDuration,MovieStatus) values (#{movieName},
+		#{movieMainActor},#{movieDirector},#{movieDuration},#{movieStatus})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteMovie" parameterType="int">
+		delete from movie where MovieId=#{movieId}
+	</delete>
+
+	
+	<update id="updateMovie" parameterType="Movie">
+		update movie set MovieName=#{movieName},MovieMainActor=#{movieMainActor},
+		MovieDirector=#{movieDirector},MovieDuration=#{movieDuration},
+		MovieStatus=#{movieStatus} where MovieId=#{movieId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByMovieId" parameterType="int" resultType="Movie">
+         select * from movie where MovieId=#{movieId}
+    </select>
+    
+   	<!-- 根据Max ID -->
+	<select id="findMaxMovieId" resultType="int">
+         select max(MovieId) from movie
+    </select>
+    
+   <!-- 根据movieStatus  SQL -->
+    <select id="findByMovieStatus" parameterType="String" resultType="Movie">
+         select * from movie where MovieStatus=#{movieStatus}
+    </select>
+
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.ScheduleDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllSchedule" resultType="Schedule">
+		select * from schedule
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveSchedule" parameterType="Schedule">
+		insert into schedule(SchedulePrice,ScheduleBegin,ScheduleEnd,
+		BeginTime,EndTime,MovieId,MovieName,HallId) values (#{schedulePrice},
+		#{scheduleBegin},#{scheduleEnd},#{beginTime},#{endTime},#{movieId},#{movieName},#{hallId})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteSchedule" parameterType="int">
+		delete from schedule where ScheduleId=#{scheduleId}
+	</delete>
+
+	
+	<update id="updateSchedule" parameterType="Schedule">
+		update schedule set SchedulePrice=#{schedulePrice},ScheduleBegin=#{scheduleBegin},
+		ScheduleEnd=#{scheduleEnd},BeginTime=#{beginTime},EndTime=#{endTime},
+		MovieId=#{movieId},MovieName=#{movieName},HallId=#{hallId} where ScheduleId=#{scheduleId}
+	</update>
+
+	<!-- 根据ScheduleID  SQL -->
+	<select id="findByScheduleId" parameterType="int" resultType="Schedule">
+         select * from schedule where ScheduleId=#{scheduleId}
+    </select>
+    
+   	<!-- 根据开始日期查找  SQL -->
+   	<select id="findBySheduleBegin" parameterType="java.sql.Date" resultType="Schedule">
+         select * from schedule where ScheduleBegin=#{scheduleBegin}
+    </select>
+    
+
+    <!-- 根据MovieId查询 -->
+    <select id="findByMovieId"  resultType="Schedule">
+         select * from schedule where ScheduleBegin=#{0} AND MovieId=#{1}
+    </select>
+    
+    <!-- 查询所有已安排的日期 -->
+    <select id="findAllScheduleDate"  resultType="java.sql.Date">
+         select distinct ScheduleBegin from schedule
+    </select>
+    
+
+
+    <!-- 根据HallID  SQL -->
+	<select id="findByHallId" parameterType="int" resultType="int">
+         select COUNT(hallId) from schedule where HallId=#{hallId}
+    </select>
+    
+
+</mapper>

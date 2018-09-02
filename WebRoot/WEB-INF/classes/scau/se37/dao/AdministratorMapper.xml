@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scau.se37.dao.AdministratorDao">	
+
+
+
+	<!-- 查询SQL -->
+	<select id="findAllAdministrator" resultType="Administrator">
+		select * from administrator
+	</select>
+	
+	<!-- 增加SQL -->
+	<insert id="saveAdministrator" parameterType="Administrator">
+		insert into administrator(AdministratorName,AdminstratorPassword,AdministratorPhone,
+		AdministratorEmail,AdministratorLevel,cinemaId) values (#{administratorName},
+		#{adminstratorPassword},#{administratorPhone},#{administratorEmail},#{administratorLevel},
+		#{cinemaId})
+	</insert>
+
+	<!-- 删除SQL -->
+	<delete id="deleteAdministrator" parameterType="int">
+		delete from administrator where AdministratorId=#{administratorId}
+	</delete>
+
+	
+	<update id="updateAdministrator" parameterType="Administrator">
+		update administrator set AdministratorName=#{administratorName},AdminstratorPassword=#{adminstratorPassword},
+		AdministratorPhone=#{administratorPhone},AdministratorEmail=#{administratorEmail},
+		AdministratorLevel=#{administratorLevel} where AdministratorId=#{administratorId}
+	</update>
+
+	<!-- 根据ID  SQL -->
+	<select id="findByAdministratorId" parameterType="int" resultType="Administrator">
+         select * from administrator where AdministratorId=#{administratorId}
+    </select>
+    
+   	<!-- 根据ID  SQL -->
+	<select id="findByAdministratorName" parameterType="String" resultType="Administrator">
+         select * from administrator where AdministratorName=#{administratorName}
+    </select>
+    
+</mapper>
